@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 
 app = Flask(__name__)
@@ -6,7 +6,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return 'Ок!', 200
+    return 'Здесь всё Ок! Но график синуса <a href="/sin/">дальше</a>.', 200
+
+@app.route('/sin/')
+def graph_sin():
+    return render_template('sin.html')
 
 @app.errorhandler(404)
 def page_not_found(error):
